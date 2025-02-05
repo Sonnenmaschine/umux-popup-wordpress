@@ -1,10 +1,13 @@
 # UMUX Popup
 
-Integrate a simple popup for usability evaluation into any website. The actual survey needs to be handled externally, e.g. using https://www.limesurvey.org/. We use UMUX at Stabi Berlin, but you can use any metric you like.
+Integrate a simple popup for usability evaluation into WordPress. The actual survey needs to be handled externally, e.g. using https://www.limesurvey.org/. We use UMUX at Stabi Berlin, but you can use any metric you like.
 
-Use the popup in any website by adding the following code before the closing body tag (`</body>`):
+Add the following code to the functions.php:
 
 ```js
+// Add UMUX Survey
+function umux(){
+    ?>
 <script>
   <!-- UMUX Popup -->
   (function () {
@@ -16,12 +19,12 @@ Use the popup in any website by adding the following code before the closing bod
       popupHeight: 600,
       triggerText: "Feedback",
       popupCloseText: "Close",
-      cssUrl: "https://cdn.jsdelivr.net/gh/StabiBerlin/umux-popup/umux-popup.css",
+      cssUrl: "https://3zm75f.csb.app/umux-popup.css",
     };
 
     // Dynamisch die JavaScript-Datei laden
     const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/gh/StabiBerlin/umux-popup/umux-popup.js";
+    script.src = "https://3zm75f.csb.app/umux-popup.js";
     script.type = "text/javascript";
     script.async = true;
 
@@ -37,4 +40,9 @@ Use the popup in any website by adding the following code before the closing bod
   })();
   <!-- End UMUX Popup -->
 </script>
+    <?php
+}
+add_action('wp_body_open', 'umux');
 ```
+
+If you use Enfold as your WordPress theme, add the icon via Fontello in the Theme Options.
